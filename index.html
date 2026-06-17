@@ -3,58 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Antonio Mone - PhD</title>
+    <title>Antonio Mone - PhD Researcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #e0f7fa 0%, #e8f5e9 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4dd0e1 0%, #81c784 100%);
+            color: white;
+            padding: 3rem 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .profile-image-small {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-text {
+            text-align: left;
+        }
+        
+        .profile-section {
+            background: linear-gradient(135deg, #4dd0e1 0%, #81c784 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            animation: fadeInDown 0.8s ease;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #00838f;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #00acc1, #66bb6a);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: #00695c;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .works-list {
+            list-style: none;
+        }
+        
+        .work-item {
+            background: #f5fffe;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid #00acc1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .work-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 172, 193, 0.2);
+        }
+        
+        .work-item arxiv {
+            background: #e8f5e9;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #2e7d32;
+            display: inline-block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .work-item arxiv:hover {
+            background: #c8e6c9;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #00acc1 0%, #66bb6a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 172, 193, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #00acc1;
+            color: #00acc1;
+        }
+        
+        .btn-outline:hover {
+            background: #00acc1;
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00acc1 0%, #66bb6a 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(0, 172, 193, 0.4);
+        }
+        
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #e0f2f1 0%, #e8f5e9 100%);
+            color: #00695c;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            border: 1px solid #00acc1;
+        }
+        
+        footer {
+            background: #004d40;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .profile-section {
+                padding: 3rem 1rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .social-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .profile-section {
+                padding: 2rem 1rem;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h2 {
+                font-size: 1.4rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .social-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Antonio Mone</h1>
-            <p>PhD in Reinforcement Learning for Human-AI Interaction in the Built Environment</p>
+            <div class="header-content">
+                <img src="profile_pic.jpg" alt="Antonio Mone" class="profile-image-small">
+                <div class="header-text">
+                    <h1>Antonio Mone</h1>
+                    <p class="subtitle">PhD Candidate in Reinforcement Learning @ TU Delft</p>
+                </div>
+            </div>
         </div>
     </header>
 
+    
     <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>
-                Welcome to my personal website! I am currently pursuing my PhD in Reinforcement Learning for Human-AI Interaction in the Built Environment. This website serves as a platform to present my academic journey, research projects, and achievements.
-            </p>
+        <div class="card">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>
+                    Welcome to my personal website! I am currently pursuing my PhD in Reinforcement Learning at the Delft University of Technology. This website serves as a platform to present my academic journey, research projects, and achievements.
+                </p>
+                <p>
+                    My work lies at the intersection of artificial intelligence and human behavior, exploring how intelligent systems can better understand and adapt to human preferences and goals. My current research focuses on developing novel algorithms for inverse reinforcement learning, with applications in various domains including robotics, autonomous systems, and the built environment.
+                </p>
+            </div>
         </div>
     </section>
-
+    
     <section id="research">
-        <div class="container">
-            <h2>Research</h2>
-            <p>
-                In my research, I focus on human-AI interaction, Inverse Reinforcement Learning, Latent Representations. Please explore the Publications section to learn more about my projects and contributions to the field.
-            </p>
+        <div class="card">
+            <div class="container">
+                <h2>Research Interests</h2>
+                <!-- <p>In my research, I focus on cutting-edge areas including:</p> -->
+                <div class="research-tags">
+                    <span class="tag">Human-AI Interaction</span>
+                    <span class="tag">Inverse Reinforcement Learning</span>
+                    <span class="tag">Latent Representations</span>
+                    <span class="tag">Built Environment</span>
+                </div>
+            </div>
         </div>
     </section>
-
-    <section id="publications">
-        <div class="container">
-            <h2>Publications</h2>
-            <ul>
-                <li>[Your First Publication]</li>
-                <li>[Your Second Publication]</li>
-                <!-- Add more publications as needed -->
-            </ul>
+    
+    <section id="works">
+        <div class="card">
+            <div class="container">
+                <h2>Works</h2>
+                <ul class="works-list">
+                    <li class="work-item">
+                        <h3>CoMI-IRL : Contrastive Multi-Intention Inverse Reinforcement Learning</h3>
+                        <p>In this work, we propose a new perspective on inverse reinforcement learning by moving from the reward-first paradigm of the current literature towards a behavior-first paradigm. We introduce a transformer-based, unsupervised behavior-first contrastive framework, CoMI-IRL, that decouples the behavioral clustering task (what happened) from the reward learning task (why it happened).</p>
+                        <a href="https://arxiv.org/abs/2602.07496" target="_blank" rel="noopener noreferrer">
+                            <span class="arxiv">📄 Read Paper on arXiv</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
-
+    
     <section id="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>
-                Feel free to reach out to me via email at a.mone@tudelft.nl. You can also connect with me on LinkedIn/Twitter/other social media. I am open to collaborations and discussions related to my research interests.
-            </p>
+        <div class="card">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <p>
+                    I'm always open to collaborations and discussions related to my research interests. Feel free to reach out!
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:a.mone@tudelft.nl" style="color: #00acc1; font-weight: 500;">a.mone@tudelft.nl</a>
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/antonio-mone" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">in</a>
+                    <a href="https://scholar.google.com/citations?user=15VfNV4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Google Scholar">S</a>
+                    <a href="https://www.instagram.com/moniogram_" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">ig</a>
+                    <a href="https://github.com/moneantonio" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">⌘</a>
+                </div>
+            </div>
         </div>
     </section>
-
+    
     <footer>
         <div class="container">
-            <p>&copy; 2023 Antonio Mone All rights reserved.</p>
+            <p>&copy; 2026 Antonio Mone. All rights reserved.</p>
         </div>
     </footer>
 </body>
